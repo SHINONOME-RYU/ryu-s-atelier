@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>りゅーのあとりえ</title>
+  <meta name="description" content="愛媛・松山生まれのりゅーの個人サイト。バイクとカメラで出会った景色を写真と短い詩で残しています。">
+  <meta name="theme-color" content="#090b12">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="りゅーのあとりえ">
+  <meta property="og:description" content="何気ない日常を、写真と一言で。">
+  <meta property="og:image" content="images/ogp.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho+B1:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <script>
+    document.documentElement.classList.add("js");
+    try {
+      if (!sessionStorage.getItem("ryu-opened") && !matchMedia("(prefers-reduced-motion: reduce)").matches)
+        document.documentElement.classList.add("is-opening");
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <!-- オープニング演出(初回訪問時のみ・クリックでスキップ) -->
+  <div class="opening" aria-hidden="true">
+    <div class="opening__panel opening__panel--top"></div>
+    <div class="opening__panel opening__panel--bottom"></div>
+    <div class="opening__inner">
+      <p class="opening__title">りゅーのあとりえ</p>
+      <span class="opening__line"></span>
+      <p class="opening__sub">Ryu's Atelier</p>
+    </div>
+  </div>
+
+  <a class="skip-link" href="#main">本文へスキップ</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">りゅーのあとりえ</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="メニューを開く"><span></span><span></span></button>
+      <nav class="nav" id="nav" aria-label="メインメニュー">
+        <ul>
+          <li><a href="about.html">りゅーについて</a></li>
+          <li><a href="photos.html">写真</a></li>
+          <li><a href="activities.html">事業・活動</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-label="トップ">
+      <!--
+        背景動画:星の軌跡タイムラプス(自作・CGで描画、著作権フリー)。24秒で空がちょうど1周するので、
+        最後のコマ→最初のコマがそのまま自然につながる(つなぎ目なしのループ)。
+        差し替えるときは images/hero/ の4ファイル(stars-720/1080 の .mp4 と .webm)+ポスター画像を置き換える。
+        ※ 実写に変えるときも、最初と最後が同じ絵になるように作るとループが自然になる。
+      -->
+      <div class="hero__slides" aria-hidden="true" data-video>
+        <video class="hero__video" muted loop playsinline preload="none"
+          poster="images/hero/stars-poster.jpg"
+          data-src-sm="images/hero/stars-720" data-src-lg="images/hero/stars-1080"></video>
+      </div>
+      <button class="hero__toggle" type="button" aria-pressed="false" aria-label="背景の動きを止める" hidden>
+        <span class="hero__toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="hero__inner">
+        <h1 class="hero__title">りゅーのあとりえ</h1>
+        <p class="hero__sub">Ryu's Atelier</p>
+        <p class="hero__poem"><span class="line">私の私による</span><br><span class="line">私のためのアトリエ。</span></p>
+      </div>
+      <a class="hero__scroll" href="#intro">scroll</a>
+    </section>
+
+    <section class="section statement" id="intro">
+      <div class="container--narrow reveal">
+        <span class="eyebrow eyebrow--both">Welcome</span>
+        <p style="margin-top:32px">
+          日常の中で出会った、別に誰かに伝えたいわけでもない<br>
+          なんともないような一期一会の情景。<br>
+          ここは、そうした景色と<br class="sp">ことばを置いておく、小さなアトリエです。
+        </p>
+      </div>
+    </section>
+
+    <section class="section--tight" aria-labelledby="entrances-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Entrance</span>
+          <h2 class="h-section" id="entrances-title">あとりえの入口</h2>
+        </div>
+        <div class="entrances">
+          <a class="entrance reveal" href="about.html">
+            <!-- 愛車の写真:images/bike/ に「いまある」写真から毎回ランダムに1枚(js/image-loader.js が自動で調べる) -->
+            <img data-random-set="bike" alt="" decoding="async">
+            <div class="entrance__body">
+              <div class="entrance__num">01 — About</div>
+              <h3 class="entrance__title">りゅーについて</h3>
+              <p class="entrance__text">松山のとある企業の広報担当。<br>それ以上も以下もなく。</p>
+              <span class="entrance__more">view</span>
+            </div>
+          </a>
+          <a class="entrance reveal" href="photos.html">
+            <img data-random-set="photos" src="images/photos/p04-starry-ridge.svg" alt="" loading="lazy" decoding="async">
+            <div class="entrance__body">
+              <div class="entrance__num">02 — Photographs</div>
+              <h3 class="entrance__title">写真</h3>
+              <p class="entrance__text">りゅーの日常。</p>
+              <span class="entrance__more">view</span>
+            </div>
+          </a>
+          <a class="entrance reveal" href="activities.html">
+            <img data-random-set="activities" src="images/about/仮データ/doshinkai.svg" alt="" loading="lazy" decoding="async">
+            <div class="entrance__body">
+              <div class="entrance__num">03 — Works</div>
+              <h3 class="entrance__title">事業・活動</h3>
+              <p class="entrance__text">楽しそうなこと全部やりたい。</p>
+              <span class="entrance__more">view</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="latest-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Latest</span>
+          <h2 class="h-section" id="latest-title">最近の一枚</h2>
+        </div>
+        <div class="latest reveal" data-latest></div>
+        <div class="center mt-l reveal"><a class="btn" href="photos.html" data-magnetic>すべての写真を見る</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        <a class="logo" href="index.html">りゅーのあとりえ</a>
+        <p>何気ない日常を、写真と一言で。</p>
+      </div>
+      <div class="footer-sns">
+        <!-- 仮のURL:本番前に差し替え -->
+        <a href="https://www.instagram.com/rebel_d750/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://x.com/0120_0625" target="_blank" rel="noopener" aria-label="X(旧Twitter)">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+      <div class="copyright">© <span data-year>2026</span> Ryu's Atelier</div>
+    </div>
+  </footer>
+
+  <script src="data/photos.js"></script>
+  <script src="data/photos-auto.js"></script>
+  <script src="data/bikes.js"></script>
+  <script src="data/activities.js"></script>
+  <script src="js/image-loader.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/stars.js"></script>
+  <script src="js/top.js"></script>
+</body>
+</html>

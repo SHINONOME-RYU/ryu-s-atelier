@@ -1,0 +1,242 @@
+/* ==========================================================
+   motion.css — 動きの演出(全ページ共通+トップ専用)
+   ========================================================== */
+
+/* ---------- 文字分割アニメーション(共通) ---------- */
+.char { display: inline-block; white-space: pre; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.js .split .char {
+  opacity: 0;
+  transform: translateY(0.5em);
+  filter: blur(6px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), filter 0.9s var(--ease);
+  transition-delay: calc(var(--i) * var(--stagger, 45ms) + var(--base, 0ms));
+}
+.js .split.is-in .char { opacity: 1; transform: none; filter: none; }
+
+/* 下層ページの見出し */
+.page-head .eyebrow::before { transform-origin: left; }
+.js .page-head .eyebrow::before { transform: scaleX(0); transition: transform 1.2s var(--ease) 0.2s; }
+.js .page-head.is-in .eyebrow::before { transform: scaleX(1); }
+.js .page-head .lead { opacity: 0; transform: translateY(12px); transition: opacity 1.2s var(--ease) 0.7s, transform 1.2s var(--ease) 0.7s; }
+.js .page-head.is-in .lead { opacity: 1; transform: none; }
+.page-head { position: relative; overflow: hidden; }
+.page-head::before {
+  content: ""; position: absolute; width: 60vw; height: 60vw; right: -20vw; top: -30vw; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 173, 104, 0.10), transparent 65%);
+  animation: float 14s ease-in-out infinite alternate; pointer-events: none;
+}
+@keyframes float { to { transform: translate(-6vw, 4vw) scale(1.1); } }
+
+/* ---------- 流れ星(全ページ) ---------- */
+.sky { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 45; pointer-events: none; mix-blend-mode: screen; }
+
+/* ---------- スクロール進捗バー ---------- */
+.progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60; pointer-events: none;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent), #f6e3b4);
+  transform-origin: left; transform: scaleX(var(--p, 0));
+}
+
+/* ---------- オープニング(トップ・初回のみ) ---------- */
+.opening { display: none; }
+.is-opening .opening {
+  display: block; position: fixed; inset: 0; z-index: 300; pointer-events: auto; cursor: pointer;
+  animation: opening-failsafe 0s 7s forwards;
+}
+@keyframes opening-failsafe { to { visibility: hidden; pointer-events: none; } }
+.opening__panel {
+  position: absolute; left: 0; right: 0; height: 50.5%;
+  background: var(--bg);
+  transition: transform 1.1s cubic-bezier(0.77, 0, 0.18, 1);
+}
+.opening__panel--top { top: 0; background: linear-gradient(180deg, #060810, var(--navy)); }
+.opening__panel--bottom { bottom: 0; background: linear-gradient(0deg, #0c0906, #161009); }
+.opening.is-leaving .opening__panel--top { transform: translateY(-100%); }
+.opening.is-leaving .opening__panel--bottom { transform: translateY(100%); }
+.opening__inner {
+  position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 18px;
+  transition: opacity 0.6s var(--ease), transform 1s var(--ease);
+}
+.opening.is-fading .opening__inner { opacity: 0; transform: scale(1.04); }
+.opening__title { font-family: var(--font-serif); font-size: clamp(24px, 5vw, 44px); letter-spacing: 0.3em; margin: 0; padding-left: 0.3em; }
+.opening__title .char { opacity: 0; transform: translateY(14px); filter: blur(10px); transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease); transition-delay: calc(var(--i) * 110ms); }
+.opening.is-in .opening__title .char { opacity: 1; transform: none; filter: none; }
+.opening__line { display: block; height: 1px; width: min(260px, 50vw); margin: 0 auto; background: linear-gradient(90deg, transparent, var(--accent), transparent); transform: scaleX(0); transition: transform 1.2s var(--ease) 0.9s; }
+.opening.is-in .opening__line { transform: scaleX(1); }
+.opening__sub { font-family: var(--font-latin); font-style: italic; color: var(--accent); letter-spacing: 0.4em; margin: 0; opacity: 0; transition: opacity 1s var(--ease) 1.3s; }
+.opening.is-in .opening__sub { opacity: 1; }
+
+/* ---------- ヒーロー(トップ) ---------- */
+.hero__slides { will-change: transform; transform: translate3d(var(--mx, 0), var(--my, 0), 0) scale(var(--hs, 1.04)); transition: transform 0.6s var(--ease); }
+.hero__fx { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; }
+.hero__inner { z-index: 2; will-change: transform, opacity; }
+.hero__scroll { z-index: 2; }
+
+.js .hero__title:not(.split) { opacity: 0; }
+.hero__title.split { --stagger: 90ms; --base: 100ms; }
+.js .hero__sub,
+.js .hero__poem .line,
+.js .hero__scroll { opacity: 0; transform: translateY(14px); transition: opacity 1.4s var(--ease), transform 1.4s var(--ease); }
+.js .hero__poem .line { display: inline-block; }
+.hero.is-ready .hero__sub { opacity: 1; transform: none; transition-delay: 0.9s; }
+.hero.is-ready .hero__poem .line { opacity: 1; transform: none; }
+.hero.is-ready .hero__poem .line:nth-of-type(1) { transition-delay: 1.5s; }
+.hero.is-ready .hero__poem .line:nth-of-type(2) { transition-delay: 2.1s; }
+.hero.is-ready .hero__scroll { opacity: 1; transform: none; transition-delay: 2.8s; }
+.js .hero__sub, .js .hero__poem .line, .js .hero__scroll, .js .hero__title { animation: show-failsafe 0s 6s forwards; }
+@keyframes show-failsafe { to { opacity: 1; } }
+
+/* 背景動画 */
+.hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero:has(.hero__video)::after {
+  background:
+    radial-gradient(70% 55% at 50% 50%, rgba(9, 11, 18, 0.55), transparent 75%),
+    linear-gradient(180deg, rgba(9, 11, 18, 0.65) 0%, rgba(9, 11, 18, 0.25) 35%, rgba(9, 11, 18, 0.45) 70%, var(--bg) 100%);
+}
+.hero__poem, .hero__sub { text-shadow: 0 0 14px rgba(0, 0, 0, 0.95), 0 0 36px rgba(0, 0, 0, 0.8); }
+
+/* 一時停止ボタン(WCAG 2.2.2) */
+.hero__toggle {
+  position: absolute; right: clamp(16px, 3vw, 32px); bottom: 28px; z-index: 3;
+  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  background: rgba(9, 11, 18, 0.45); border: 1px solid rgba(241, 236, 226, 0.25); color: var(--text);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: border-color 0.3s, background 0.3s;
+}
+.hero__toggle[hidden] { display: none; }
+.hero__toggle:hover { border-color: var(--accent); background: rgba(9, 11, 18, 0.7); }
+.hero__toggle-icon { width: 10px; height: 12px; border-left: 3px solid currentColor; border-right: 3px solid currentColor; }
+.hero__toggle[aria-pressed="true"] .hero__toggle-icon {
+  width: 0; height: 0; border-right: 0; margin-left: 3px;
+  border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 11px solid currentColor;
+}
+
+/* 金色の飾り線 */
+.hero__title::after {
+  content: ""; display: block; height: 1px; width: 120px; margin: 18px auto 0;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transform: scaleX(0); transition: transform 1.6s var(--ease) 0.8s;
+}
+.hero.is-ready .hero__title::after { transform: scaleX(1); }
+
+/* ---------- 入口カード:3Dチルト+スポットライト ---------- */
+.entrances { perspective: 1000px; }
+.entrance { transform-style: preserve-3d; }
+.entrance.is-tilting {
+  transition: transform 0.18s ease-out, opacity 1.2s var(--ease);
+  transform: rotateX(var(--rx, 0)) rotateY(var(--ry, 0)) translateZ(0);
+}
+.entrance::after {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 0.4s;
+  background: radial-gradient(420px circle at var(--sx, 50%) var(--sy, 50%), rgba(212, 173, 104, 0.22), transparent 60%);
+}
+.entrance:hover::after { opacity: 1; }
+.entrance:hover { border-color: rgba(212, 173, 104, 0.45); }
+.entrance__body { position: relative; z-index: 1; transform: translateZ(30px); }
+
+/* ---------- せり上がり(「Welcome」と同じ動き)を順番に ---------- */
+.js .reveal { transition-delay: var(--rd, 0ms); }
+.js .reveal[data-stagger] { opacity: 1; transform: none; }
+.js .reveal[data-stagger] > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+  transition-delay: calc(var(--si, 0) * 160ms);
+}
+.js .reveal[data-stagger].is-visible > * { opacity: 1; transform: none; }
+
+/* ---------- 最近の一枚:パララックス ---------- */
+.latest img { transform: translateY(var(--py, 0px)) scale(1.18); transition: filter 0.6s; }
+.latest a:hover img { transform: translateY(var(--py, 0px)) scale(1.18); filter: brightness(1.12); }
+
+/* ---------- マグネットボタン ---------- */
+.btn[data-magnetic] { transition: transform 0.3s var(--ease), border-color 0.3s, background 0.3s; transform: translate(var(--bx, 0), var(--by, 0)); }
+
+/* ---------- カーソル(トップ・マウス環境のみ) ---------- */
+.cursor { --cursor-color: #009b9f; position: fixed; top: 0; left: 0; z-index: 250; pointer-events: none; }
+.cursor__ring {
+  position: absolute; width: 36px; height: 36px; margin: -18px 0 0 -18px; border-radius: 50%;
+  border: 1.5px solid var(--cursor-color);
+  transition: width 0.35s var(--ease), height 0.35s var(--ease), margin 0.35s var(--ease), background 0.35s, opacity 0.3s;
+}
+.cursor.is-hover .cursor__ring { width: 72px; height: 72px; margin: -36px 0 0 -36px; background: rgba(0, 155, 159, 0.16); }
+.cursor.is-hidden .cursor__ring { opacity: 0; }
+
+/* トップの入口カード:写真が決まるまで(または1枚も無いとき)は画像を出さない */
+.entrance img[data-random-set]:not([src]) { display: none; }
+
+/* ---------- 愛車の写真カルーセル(クロスフェード) ---------- */
+.carousel { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--bg); border: 1px solid var(--line); outline-offset: 4px; }
+.carousel:focus-visible { outline: 1px solid var(--accent); }
+.carousel__viewport { position: absolute; inset: 0; }
+.carousel__slide { position: absolute; inset: 0; margin: 0; opacity: 0; visibility: hidden; transition: opacity 1.4s var(--ease), visibility 0s linear 1.4s; }
+.carousel__slide.is-active { opacity: 1; visibility: visible; transition: opacity 1.4s var(--ease), visibility 0s; z-index: 1; }
+.carousel .carousel__slide img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; transform: scale(1.001); user-select: none; -webkit-user-drag: none; }
+.carousel.is-playing .carousel__slide.is-active img { animation: carousel-zoom 7s ease-out forwards; }
+@keyframes carousel-zoom { from { transform: scale(1.001); } to { transform: scale(1.06); } }
+.carousel noscript img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* 下部の操作バー */
+.carousel::after { content: ""; position: absolute; inset: auto 0 0; height: 96px; z-index: 2; pointer-events: none; background: linear-gradient(0deg, rgba(9, 11, 18, 0.78), transparent); }
+.carousel__bar { position: absolute; inset: auto 0 0; z-index: 3; display: flex; align-items: center; justify-content: space-between; gap: 4px; padding: 6px 8px 10px; }
+.carousel__btn { all: unset; box-sizing: border-box; width: 44px; height: 44px; display: grid; place-items: center; cursor: pointer; color: var(--text); font-family: var(--font-latin); font-size: 30px; line-height: 1; opacity: 0.85; transition: opacity 0.3s, color 0.3s; }
+.carousel__btn:hover { opacity: 1; color: var(--accent); }
+.carousel__btn:focus-visible { outline: 1px solid var(--accent); outline-offset: -4px; }
+.carousel__btn[hidden] { display: none; }
+.carousel__dots { flex: 1; display: flex; justify-content: center; align-items: center; gap: 0; }
+.carousel__dot { all: unset; box-sizing: border-box; position: relative; width: 28px; height: 44px; cursor: pointer; }
+.carousel__dot::before { content: ""; position: absolute; left: 4px; right: 4px; top: 50%; height: 2px; translate: 0 -50%; background: rgba(241, 236, 226, 0.3); transition: background 0.3s; }
+.carousel__dot:hover::before { background: rgba(241, 236, 226, 0.6); }
+.carousel__dot.is-active::before { background: rgba(241, 236, 226, 0.3); }
+.carousel__dot::after { content: ""; position: absolute; left: 4px; top: 50%; height: 2px; width: calc(100% - 8px); translate: 0 -50%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.carousel__dot.is-active::after { transform: scaleX(1); }
+.carousel.is-playing .carousel__dot.is-active::after { animation: carousel-fill 5.5s linear forwards; }
+@keyframes carousel-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.carousel__dot:focus-visible { outline: 1px solid var(--accent); outline-offset: -6px; }
+/* 一時停止/再生アイコン */
+.carousel__pp { width: 10px; height: 12px; border-left: 3px solid currentColor; border-right: 3px solid currentColor; }
+.carousel__btn[aria-pressed="true"] .carousel__pp { width: 0; height: 0; border-right: 0; margin-left: 3px; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 11px solid currentColor; }
+.carousel__count { position: absolute; top: 14px; right: 16px; z-index: 3; margin: 0; font-family: var(--font-latin); font-style: italic; font-size: 13px; letter-spacing: 0.2em; color: rgba(241, 236, 226, 0.75); text-shadow: 0 0 10px rgba(0, 0, 0, 0.8); }
+.carousel.is-single .carousel__bar, .carousel.is-single .carousel__count { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .carousel__slide, .carousel__slide.is-active { transition: none; }
+  .carousel.is-playing .carousel__slide.is-active img, .carousel.is-playing .carousel__dot.is-active::after { animation: none; }
+}
+
+/* ---------- プロフィールの基本情報は2×2 / スペック表の見出し幅 ---------- */
+.facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.spec div { grid-template-columns: 8.5em 1fr; }
+
+/* ---------- 相棒たち:左右反転レイアウト ---------- */
+.bike--reverse { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+@media (max-width: 860px) {
+  .bike--reverse { grid-template-columns: 1fr; }
+  .bike--reverse .bike__photo { order: -1; }
+}
+
+/* ---------- Coming Soon カード ---------- */
+.coming {
+  position: relative; overflow: hidden; border: 1px solid var(--line); padding: clamp(48px, 8vw, 96px) 24px; text-align: center;
+  background: radial-gradient(800px 400px at 50% 120%, rgba(184, 130, 62, 0.25), transparent 70%), linear-gradient(180deg, var(--navy), var(--bg));
+}
+.coming__title {
+  font-family: var(--font-latin); font-style: italic; font-weight: 500; font-size: clamp(36px, 7vw, 72px); letter-spacing: 0.08em; margin: 18px 0 8px;
+  background: linear-gradient(100deg, #8a6a3c 20%, #f6e3b4 40%, var(--accent) 50%, #8a6a3c 70%);
+  background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+@keyframes shimmer { from { background-position: 125% 0; } to { background-position: -125% 0; } }
+.coming p { color: var(--text-dim); margin: 0; }
+.coming__dots span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin: 24px 6px 0; animation: blink 1.6s ease-in-out infinite; }
+.coming__dots span:nth-child(2) { animation-delay: 0.2s; }
+.coming__dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal[data-stagger] > *,
+  .js .split .char, .js .hero__sub, .js .hero__poem .line, .js .hero__scroll, .js .page-head .lead { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .js .page-head .eyebrow::before, .hero__title::after { transform: none !important; }
+  .js .hero__title:not(.split) { opacity: 1; }
+  .is-opening .opening, .cursor, .hero__fx { display: none !important; }
+}

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>事業・活動 | りゅーのあとりえ</title>
+  <meta name="description" content="大人が本気で子どもの頃に還るサークル「童心会」と、準備中の新しい事業のご紹介。">
+  <meta name="theme-color" content="#090b12">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="事業・活動 | りゅーのあとりえ">
+  <meta property="og:description" content="大人が本気で、子どもに還る。童心会と、これから始めること。">
+  <meta property="og:image" content="images/ogp.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho+B1:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">りゅーのあとりえ</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="メニューを開く"><span></span><span></span></button>
+      <nav class="nav" id="nav" aria-label="メインメニュー">
+        <ul>
+          <li><a href="about.html">りゅーについて</a></li>
+          <li><a href="photos.html">写真</a></li>
+          <li><a href="activities.html" aria-current="page">事業・活動</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <span class="eyebrow">03 — Works</span>
+        <h1>事業・活動</h1>
+        <p class="lead">いつ死ぬかわからんし、やりたいことは全部やっちまおうぜ。</p>
+      </div>
+    </header>
+
+    <section class="section" aria-label="活動一覧">
+      <div class="container">
+
+        <article class="activity reveal" aria-labelledby="act-1">
+          <!-- 活動の写真カルーセル:images/activities/ に「いまある」写真を自動で表示(js/image-loader.js)。
+               写真が1枚も無い間は、中の仮画像(図形)をそのまま表示する。 -->
+          <div class="activity__visual">
+            <div class="carousel" data-carousel="activities" data-alt="童心会の活動の様子" data-sizes="(max-width: 860px) 100vw, 42vw"
+              role="region" aria-roledescription="carousel" aria-label="童心会の活動の写真" tabindex="0" style="aspect-ratio:4/3">
+              <div class="carousel__viewport" data-carousel-viewport>
+                <figure class="carousel__slide is-active">
+                  <img src="images/about/仮データ/doshinkai.svg" alt="真夜中のテーブルに置かれた、ろうそくの灯るホールケーキ(仮の画像)" width="1800" height="1200" decoding="async">
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span class="badge badge--live">活動中</span>
+            <h2 class="activity__title" id="act-1">童心会</h2>
+            <p class="activity__en">Doshin-kai — since Nov. 2026</p>
+            <p>大人が本気で「子どもの頃」に還るためのサークルです。小学校の昼休みやクラブ活動で夢中になった遊びを全力でやり直したり、子どもの頃に夢見た「ちょっと悪いこと」を叶えたり。やったことは、ちゃんと報告して、みんなで共有します。</p>
+            <ul class="points">
+              <li>活動例:ドッジボール、おにごっこ、かくれんぼ、ポートボール...etc</li>
+              <li>活動例:駄菓子屋1000円企画、なわとび名人検定</li>
+              <li>活動の様子は SNS で報告・共有</li>
+              <li>部員用の LINE グループで企画・連絡</li>
+            </ul>
+            <!-- 童心会LPへのCTA。?utm_... で「どこから来たか」をLP→申込フォームへ引き継ぐ -->
+            <div class="activity__cta">
+              <a class="btn btn--primary" href="doshinkai.html?utm_source=site&amp;utm_medium=referral&amp;utm_content=activities_card">詳しくはコチラ</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="reveal" aria-labelledby="act-2" style="padding-top:clamp(48px,7vw,88px)">
+          <div class="coming">
+            <span class="badge badge--prep">準備中</span>
+            <h2 class="coming__title" id="act-2">Coming Soon</h2>
+            <p>新しい事業を、ひそかに準備しています。<br>公開までお待ちください。</p>
+            <div class="coming__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="container--narrow cta reveal">
+        <span class="eyebrow eyebrow--both">Contact</span>
+        <h2 class="h-section" style="margin-top:12px">ご相談・ご参加はお気軽に</h2>
+        <p style="margin-top:16px">童心会への入部は専用ページから。<br>活動へのご相談は SNS の DM からご連絡ください。</p>
+        <div class="cta__actions">
+          <a class="btn btn--primary" href="doshinkai.html?utm_source=site&amp;utm_medium=referral&amp;utm_content=activities_contact">童心会に入部する</a>
+          <a class="btn" href="https://www.instagram.com/rebel_d750/" target="_blank" rel="noopener">Instagram で連絡する</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        <a class="logo" href="index.html">りゅーのあとりえ</a>
+        <p>何気ない日常を、写真と一言で。</p>
+      </div>
+      <div class="footer-sns">
+        <a href="https://www.instagram.com/rebel_d750/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://x.com/0120_0625" target="_blank" rel="noopener" aria-label="X(旧Twitter)">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+      <div class="copyright">© <span data-year>2026</span> Ryu's Atelier</div>
+    </div>
+  </footer>
+
+  <script src="data/activities.js"></script>
+  <script src="js/image-loader.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/stars.js"></script>
+</body>
+</html>

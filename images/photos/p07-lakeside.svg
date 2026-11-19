@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1500" width="1500" height="1500">
+<defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d7c6b8"/><stop offset="0.47" stop-color="#9fa7b8"/></linearGradient><linearGradient id="l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8790a3"/><stop offset="1" stop-color="#2c3240"/></linearGradient>
+<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0.09 0"/></filter>
+<radialGradient id="vig" cx="50%" cy="50%" r="75%"><stop offset="60%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.65"/></radialGradient>
+</defs>
+<rect width="100%" height="100%" fill="url(#s)"/>
+       <path d="M0,1500 L0.0,674.3 L41.7,648.2 L83.3,652.8 L125.0,654.8 L166.7,677.0 L208.3,643.5 L250.0,647.2 L291.7,612.4 L333.3,632.1 L375.0,577.7 L416.7,603.4 L458.3,599.9 L500.0,636.4 L541.7,600.7 L583.3,610.3 L625.0,599.8 L666.7,599.8 L708.3,597.9 L750.0,584.1 L791.7,631.1 L833.3,657.3 L875.0,699.1 L916.7,645.0 L958.3,674.5 L1000.0,625.3 L1041.7,601.6 L1083.3,561.1 L1125.0,580.6 L1166.7,614.9 L1208.3,633.2 L1250.0,642.9 L1291.7,694.3 L1333.3,699.3 L1375.0,651.9 L1416.7,661.7 L1458.3,681.2 L1500.0,688.4 L1500,1500 Z" fill="#4c5466"/>
+       <rect y="760" width="1500" height="740" fill="url(#l)"/>
+       <g transform="translate(0,1520) scale(1,-1)" opacity="0.4"><path d="M0,1500 L0.0,674.3 L41.7,648.2 L83.3,652.8 L125.0,654.8 L166.7,677.0 L208.3,643.5 L250.0,647.2 L291.7,612.4 L333.3,632.1 L375.0,577.7 L416.7,603.4 L458.3,599.9 L500.0,636.4 L541.7,600.7 L583.3,610.3 L625.0,599.8 L666.7,599.8 L708.3,597.9 L750.0,584.1 L791.7,631.1 L833.3,657.3 L875.0,699.1 L916.7,645.0 L958.3,674.5 L1000.0,625.3 L1041.7,601.6 L1083.3,561.1 L1125.0,580.6 L1166.7,614.9 L1208.3,633.2 L1250.0,642.9 L1291.7,694.3 L1333.3,699.3 L1375.0,651.9 L1416.7,661.7 L1458.3,681.2 L1500.0,688.4 L1500,1500 Z" fill="#4c5466"/></g>
+       <rect y="760" width="1500" height="740" fill="#2c3240" opacity="0.35"/>
+       <path d="M0,1180 L600,1160 L640,1180 L0,1210 Z" fill="#1d212b"/>
+       <rect x="590" y="1100" width="4" height="70" fill="#1d212b"/>
+<rect width="100%" height="100%" filter="url(#grain)"/>
+<rect width="100%" height="100%" fill="url(#vig)"/>
+</svg>

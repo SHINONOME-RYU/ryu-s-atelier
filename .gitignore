@@ -1,0 +1,9 @@
+# 元写真(撮影情報つき)・書き出し用・作業用は公開しない
+images/about/バイク/
+images/about/写真/
+images/about/活動/
+images/about/プロフィール/
+images/about/pro.jpg
+out/
+SITE_SPEC.md
+.claude/
